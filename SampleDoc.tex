@@ -1,0 +1,88 @@
+\documentclass{amsart}
+\usepackage{mathtools,upref,siunitx,upquote,fancyvrb,xspace,color}
+\usepackage[hyphens]{url}
+\usepackage[utf8]{inputenc}
+\usepackage{esdiff}
+
+\input{FJHDef.tex}
+
+
+\usepackage{algpseudocode}
+\usepackage{algorithm, algorithmicx}
+\algnewcommand\algorithmicparam{\textbf{Parameters:}}
+\algnewcommand\PARAM{\item[\algorithmicparam]}
+\algnewcommand\algorithmicinput{\textbf{Input:}}
+\algnewcommand\INPUT{\item[\algorithmicinput]}
+\algnewcommand\RETURN{\State \textbf{Return }}
+
+
+
+\begin{document}
+\title{Sample Document}
+\author{Fred J. Hickernell}
+\begin{abstract}This project is where all of the files and commands go that are needed elsewhere
+\end{abstract}
+
+\maketitle
+
+\[
+A = \begin{bmatrix*}[r]
+     12 & 3  & 0 \\
+     0  & 10 &-1 
+   \end{bmatrix*}
+\]
+
+URL sample \footnote{\url{https://icl.bitbucket.io/hpl-ai/}}
+
+\url{http://blogs.mathworks.com/cleve/2013/01/07/george-forsythe/}
+
+\begin{equation} \label{eq1}
+    x = 1 \ \ \si{kg.m/s^2}
+\end{equation}
+
+\begin{equation}
+    x^2 = 1 \ \ \si{kg^2.m^2/s^4} \qquad \text{by } \eqref{eq1}
+\end{equation}
+
+\begin{verbatim} 'quotes' \end{verbatim}
+
+\[
+\diffp{f}{{x_1}{x_2}}
+\]
+
+
+\begin{Verbatim}[fontsize=\small,formatcom=\color{blue}]
+>> syms x, int(1/(1-x^4))
+ans =
+atan(x)/2 + atanh(x)/2
+\end{Verbatim}
+
+$\vx \bigcdot \vy$
+
+\begin{algorithm}[H]
+\caption{A Universal Algorithm \label{alg:basicadapt}}
+	\begin{algorithmic}
+	\PARAM full fledged kitchen
+	\INPUT ground beef; marinara sauce; pasta
+
+    \Ensure A delicious meal
+
+\Repeat
+
+\State Let $n \leftarrow n + 1$
+
+\State cook it
+
+\Until dinner is done
+
+\RETURN Spaghetti
+
+\end{algorithmic}
+\end{algorithm}
+
+References from the same proceedings \cite{HicJim16a,JimHic16a}, but the cross-referenced proceedings volume is not included because of the \texttt{latexmkrc} file.
+
+\bibliographystyle{amsplain}
+\bibliography{FJH23,FJHown23}
+
+\end{document}
