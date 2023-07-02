@@ -1,0 +1,48 @@
+\documentclass{amsart}
+\usepackage{mathtools,upref,siunitx,upquote,fancyvrb,xspace,color}
+\usepackage[hyphens]{url}
+\usepackage[utf8]{inputenc}
+\usepackage{esdiff}
+
+\input{FJHDef.tex}
+
+\DeclareMathOperator{\SOL}{SOL}
+\DeclareMathOperator{\APP}{APP}
+
+
+\usepackage{algpseudocode}
+\usepackage{algorithm, algorithmicx}
+\algnewcommand\algorithmicparam{\textbf{Parameters:}}
+\algnewcommand\PARAM{\item[\algorithmicparam]}
+\algnewcommand\algorithmicinput{\textbf{Input:}}
+\algnewcommand\INPUT{\item[\algorithmicinput]}
+\algnewcommand\RETURN{\State \textbf{Return }}
+
+
+
+\begin{document}
+\title{Kernel Approximation with a Reduced Basis}
+\author{Fred J. Hickernell}
+\begin{abstract}This project is where all of the files and commands go that are needed elsewhere
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}\label{sec:intro}
+Let $K:\Omega \times \Omega \to \reals$ be a reproducing kernel with associated Hilbert space $\ch$. Let $\{\vx_1, \vx_2, \ldots\}$ be a sequence of data sites.  If $\SOL: \ch \to \reals$ is a bounded linear functional, then the optimal approximation to $\SOL(f)$ based on function values  is 
+\begin{subequations}  \label{eq:bestappx}
+\begin{gather}
+    \APP(\mX,f) =  f(\mX)^T K(\mX,\mX^T)^{-1}\SOL(K(\mX,\cdot)), \\
+    \mX := (\vx_1, \dots, \vx_n)^T, \qquad  f(\mX) = \bigl(f(\vx_i) \bigr)_{i=1}^n, \\
+    K(\mX,\mX^T) = \bigl(K(\vx_i,\vx_j)\bigr)_{i,j=1}^n, \qquad
+     K(\mX,\vx) = \bigl(K(\vx_i,\vx)\bigr)_{i=1}^n, 
+\end{gather}
+\end{subequations}
+
+\section{If the Basis Is Reduced, Do More Samples Help}
+Suppose that we take many ($N > n$) of samples, but do not want to invert an $N \times N$ matrix.  Can the extra samples help us approximate $\SOL(f)$ better, but with only a basis based on $n$ samples?
+
+\bibliographystyle{amsplain}
+\bibliography{FJH23,FJHown23}
+
+\end{document}
