@@ -18,7 +18,8 @@
 \algnewcommand\INPUT{\item[\algorithmicinput]}
 \algnewcommand\RETURN{\State \textbf{Return }}
 
-
+\newcommand{\tmX}{\widetilde{\mX}}
+\newcommand{\tva}{\widetilde{\va}}
 
 \begin{document}
 \title{Kernel Approximation with a Reduced Basis}
@@ -29,18 +30,36 @@
 \maketitle
 
 \section{Introduction}\label{sec:intro}
-Let $K:\Omega \times \Omega \to \reals$ be a reproducing kernel with associated Hilbert space $\ch$. Let $\{\vx_1, \vx_2, \ldots\}$ be a sequence of data sites.  If $\SOL: \ch \to \reals$ is a bounded linear functional, then the optimal approximation to $\SOL(f)$ based on function values  is 
+Let $K:\Omega \times \Omega \to \reals$ be a reproducing kernel with associated Hilbert space $\ch$. Let $\{\vx_1, \vx_2, \ldots\}$ be a sequence of data sites.  If $\SOL: \ch \to \reals$ is a bounded linear functional, then the optimal approximation to $\SOL(f)$ based on function values  is
 \begin{subequations}  \label{eq:bestappx}
 \begin{gather}
     \APP(\mX,f) =  f(\mX)^T K(\mX,\mX^T)^{-1}\SOL(K(\mX,\cdot)), \\
     \mX := (\vx_1, \dots, \vx_n)^T, \qquad  f(\mX) = \bigl(f(\vx_i) \bigr)_{i=1}^n, \\
     K(\mX,\mX^T) = \bigl(K(\vx_i,\vx_j)\bigr)_{i,j=1}^n, \qquad
-     K(\mX,\vx) = \bigl(K(\vx_i,\vx)\bigr)_{i=1}^n, 
+     K(\mX,\vx) = \bigl(K(\vx_i,\vx)\bigr)_{i=1}^n,
 \end{gather}
 \end{subequations}
 
-\section{If the Basis Is Reduced, Do More Samples Help}
+\section{If the Basis Is Reduced, Do More Samples Help?}
 Suppose that we take many ($N > n$) of samples, but do not want to invert an $N \times N$ matrix.  Can the extra samples help us approximate $\SOL(f)$ better, but with only a basis based on $n$ samples?
+\begin{gather}
+	\APP(\mX_N,f) =  f(\mX_N))^T \mA(\mX_N) \SOL(K(\mX,\cdot)), \\
+	\mX_N := (\vx_1, \dots, \vx_N)^T = (\mX \vert \tmX).
+\end{gather}
+We break down $f$ into three parts:
+\begin{gather*}
+f =  \va^T K(\mX,\cdot) + \tva^T K(\tmX,\cdot) + f_\perp, \qquad f(\vX_N) = \vzero_N\\
+\SOL(f) =  \va^T \SOL(K(\mX,\cdot)) + \tva^T \SOL( K(\tmX,\cdot))  + \SOL(f_\perp) \\
+f(\mX_N) = \begin{pmatrix}
+	K(\mX,\mX) & K(\tmX,\mX) \\
+	K(\tmX,\mX) & K(\tmX,\tmX)
+\end{pmatrix}
+\begin{pmatrix} \va \\ \tva \end{pmatrix}
+= K(\mX_N,\mX_N) \begin{pmatrix} \va \\ \tva \end{pmatrix}\\
+	\APP(\mX_N,f) =  f(\mX_N))^T \mA(\mX_N) \SOL(K(\mX,\cdot)), \\
+	\SOL(f) - \APP(\mX_N,f) = \begin{pmatrix}\va^T & \tva^T \end{pmatrix}
+	\left[ \mI -  K(\vX_N,\vX_N) \begin{pmatrix} \mA(\vX_N) & \mzero_{N-n,N} \end{pmatrix} \right] \begin{pmatrix} \SOL(K(\mX,\cdot)) \\ \SOL( K(\tmX,\cdot)) \end{pmatrix}
+\end{gather*}
 
 \bibliographystyle{amsplain}
 \bibliography{FJH23,FJHown23}
