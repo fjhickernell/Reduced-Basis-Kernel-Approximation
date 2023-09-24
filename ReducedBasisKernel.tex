@@ -36,9 +36,11 @@ Let $K:\Omega \times \Omega \to \reals$ be a reproducing kernel with associated 
     \APP(\mX,f) =  f(\mX)^T K(\mX,\mX^T)^{-1}\SOL(K(\mX,\cdot)), \\
     \mX := (\vx_1, \dots, \vx_n)^T, \qquad  f(\mX) = \bigl(f(\vx_i) \bigr)_{i=1}^n, \\
     K(\mX,\mX^T) = \bigl(K(\vx_i,\vx_j)\bigr)_{i,j=1}^n, \qquad
-     K(\mX,\vx) = \bigl(K(\vx_i,\vx)\bigr)_{i=1}^n,
+     K(\mX,\vx) = \bigl(K(\vx_i,\vx)\bigr)_{i=1}^n.
 \end{gather}
 \end{subequations}
+
+The proof of this is a follows.  Let $f = f_{\parallel} + f_{\perp}$, where $f_{\perp}(\vx_i) =\ip[K]{f_{\perp}}{K(\vx_i,\cdot)} = 0$ for $i = 1, \ldots, n$.  Then $\SOL(f) = \SOL(f_{\parallel}) + \SOL(f_{\perp})$.
 
 \section{If the Basis Is Reduced, Do More Samples Help?}
 Suppose that we take many ($N > n$) of samples, but do not want to invert an $N \times N$ matrix.  Can the extra samples help us approximate $\SOL(f)$ better, but with only a basis based on $n$ samples?
